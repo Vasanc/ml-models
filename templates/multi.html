@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <!--From https://codepen.io/frytyler/pen/EGdtg-->
+  <head>
+    <meta charset="UTF-8" />
+    <title>Multi Variate Linear Regression</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="login">
+      <h1>Housing rate Prediction</h1>
+
+      <!-- Main Input For Receiving Query to our ML -->
+      <form action="{{ url_for('multipredict')}}" method="post">
+        <input
+          type="text"
+          name="bedrooms"
+          placeholder="No. of Bedrooms"
+          required="required"
+        />
+        <input
+          type="text"
+          name="bathrooms"
+          placeholder="No. of Bathrooms"
+          required="required"
+        /><input
+          type="text"
+          name="sqft"
+          placeholder="Total square feet"
+          required="required"
+        /><input
+          type="text"
+          name="floors"
+          placeholder="No. of Floors"
+          required="required"
+        />
+        <button type="submit" class="btn btn-primary btn-block btn-large">
+          Predict
+        </button>
+      </form>
+      <br />
+      <a
+        class="btn btn-primary btn-block btn-large"
+        style="text-decoration: none"
+        href="/"
+        role="button"
+        >Home</a
+      >
+      <br />
+      <br />
+      {{ prediction_text }}
+    </div>
+  </body>
+</html>
