@@ -28,6 +28,10 @@ def log():
 def knn():
     return render_template('knn.html')
 
+@app.route('/svm')
+def svm():
+    return render_template('svm.html')
+
 @app.route('/linearpredict',methods=['POST'])
 def linearpredict():
     
@@ -75,6 +79,19 @@ def knnpredict():
         return render_template('knn.html', prediction_text='The flower is Iris-Versicolor')
     else:
         return render_template('knn.html', prediction_text='The flower is Iris-Virginica')
+    
+@app.route('/svmpredict',methods=['POST'])
+def svmpredict():
+    
+    model = pickle.load(open('pkl files\svm.pkl', 'rb'))
+    int_features = [float(x) for x in request.form.values()]
+    final_features = [np.array(int_features)]
+    prediction = model.predict(final_features)
+    output = round(prediction[0], 2)
+    if output==1:
+        return render_template('svm.html', prediction_text='The Penguin is Male')
+    else:
+        return render_template('svm.html', prediction_text='The Penguin is Female')
     
 if __name__ == "__main__":
     app.run()
