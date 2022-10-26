@@ -92,6 +92,5 @@ def svmpredict():
         return render_template('svm.html', prediction_text='The Penguin is Male')
     else:
         return render_template('svm.html', prediction_text='The Penguin is Female')
-    
 if __name__ == "__main__":
     app.run()
