@@ -32,6 +32,18 @@ def knn():
 def svm():
     return render_template('svm.html')
 
+@app.route('/for')
+def forr():
+    return render_template('for.html')
+
+@app.route('/ada')
+def ada():
+    return render_template('ada.html')
+
+@app.route('/xg')
+def xg():
+    return render_template('xg.html')
+
 @app.route('/linearpredict',methods=['POST'])
 def linearpredict():
     
@@ -93,5 +105,48 @@ def svmpredict():
     else:
         return render_template('svm.html', prediction_text='The Penguin is Female')
     
+    
+@app.route('/forpredict',methods=['POST'])
+def forpredict():
+    
+    model = pickle.load(open(r'pkl files\for.pkl', 'rb'))
+    int_features = [float(x) for x in request.form.values()]
+    final_features = [np.array(int_features)]
+    prediction = model.predict(final_features)
+    output = round(prediction[0], 2)
+    if output==1:
+        return render_template('for.html', prediction_text='The Possum is Male')
+    else:
+        return render_template('for.html', prediction_text='The Possum is Female')
+
+@app.route('/adapredict',methods=['POST'])
+def adapredict():
+    
+    model = pickle.load(open(r'pkl files\ada.pkl', 'rb'))
+    int_features = [float(x) for x in request.form.values()]
+    final_features = [np.array(int_features)]
+    prediction = model.predict(final_features)
+    output = round(prediction[0], 2)
+    if output==0:
+        return render_template('ada.html', prediction_text='The flower is Iris-Setosa')
+    elif output==1:
+        return render_template('ada.html', prediction_text='The flower is Iris-Versicolor')
+    else:
+        return render_template('ada.html', prediction_text='The flower is Iris-Virginica')
+
+
+@app.route('/xgpredict',methods=['POST'])
+def xgpredict():
+    
+    model = pickle.load(open(r'pkl files\xg.pkl', 'rb'))
+    int_features = [float(x) for x in request.form.values()]
+    final_features = [np.array(int_features)]
+    prediction = model.predict(final_features)
+    output = round(prediction[0], 2)
+    if output==1:
+        return render_template('xg.html', prediction_text='You have diabetes')
+    else:
+        return render_template('xg.html', prediction_text='You don\'t have diabetes')
+
 if __name__ == "__main__":
-    app.run()
+    app.run(debug = True)

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <!--From https://codepen.io/frytyler/pen/EGdtg-->
+  <head>
+    <meta charset="UTF-8" />
+    <title>XGBoost</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="login">
+      <h1>Diabetes Prediction</h1>
+
+      <!-- Main Input For Receiving Query to our ML -->
+      <form action="{{ url_for('xgpredict')}}" method="post">
+        <input
+          type="text"
+          name="glucose"
+          placeholder="Glucose Level"
+          required="required"
+        />
+        <input
+          type="text"
+          name="bp"
+          placeholder="Blood Pressure"
+          required="required"
+        /><input
+          type="text"
+          name="insulin"
+          placeholder="Insulin"
+          required="required"
+        /><input
+          type="text"
+          name="bmi"
+          placeholder="Body Mass Index"
+          required="required"
+        />
+        <input
+          type="text"
+          name="age"
+          placeholder="Age"
+          required="required"/>
+        <button type="submit" class="btn btn-primary btn-block btn-large">
+          Predict
+        </button>
+      </form>
+      <br />
+      <a
+        class="btn btn-primary btn-block btn-large"
+        style="text-decoration: none"
+        href="/"
+        role="button"
+        >Home</a
+      >
+      <br />
+      <br />
+      {{ prediction_text }}
+    </div>
+  </body>
+</html>
