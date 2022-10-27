@@ -5,7 +5,6 @@ import pickle
 app = Flask(__name__)
 
 
-#abcd
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -149,4 +148,4 @@ def xgpredict():
         return render_template('xg.html', prediction_text='You don\'t have diabetes')
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug = False, host = '0.0.0.0')
