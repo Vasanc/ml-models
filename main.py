@@ -46,7 +46,7 @@ def xg():
 @app.route('/linearpredict',methods=['POST'])
 def linearpredict():
     
-    model = pickle.load(open('pkl files\linear.pkl', 'rb'))
+    model = pickle.load(open('pkl files/linear.pkl', 'rb'))
     int_features = [float(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
@@ -56,7 +56,7 @@ def linearpredict():
 @app.route('/multipredict',methods=['POST'])
 def multipredict():
     
-    model = pickle.load(open('pkl files\multi.pkl', 'rb'))
+    model = pickle.load(open('pkl files/multi.pkl', 'rb'))
     int_features = [float(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
@@ -67,7 +67,7 @@ def multipredict():
 @app.route('/logpredict',methods=['POST'])
 def logpredict():
     
-    model = pickle.load(open('pkl files\log.pkl', 'rb'))
+    model = pickle.load(open('pkl files/log.pkl', 'rb'))
     int_features = [float(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
@@ -79,7 +79,7 @@ def logpredict():
 
 @app.route('/knnpredict',methods=['POST'])
 def knnpredict():
-    model = pickle.load(open('pkl files\knn.pkl', 'rb'))
+    model = pickle.load(open('pkl files/knn.pkl', 'rb'))
     int_features = [float(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
@@ -94,7 +94,7 @@ def knnpredict():
 @app.route('/svmpredict',methods=['POST'])
 def svmpredict():
     
-    model = pickle.load(open('pkl files\svm.pkl', 'rb'))
+    model = pickle.load(open('pkl files/svm.pkl', 'rb'))
     int_features = [float(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
@@ -108,7 +108,7 @@ def svmpredict():
 @app.route('/forpredict',methods=['POST'])
 def forpredict():
     
-    model = pickle.load(open(r'pkl files\for.pkl', 'rb'))
+    model = pickle.load(open('pkl files/for.pkl', 'rb'))
     int_features = [float(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
@@ -121,7 +121,7 @@ def forpredict():
 @app.route('/adapredict',methods=['POST'])
 def adapredict():
     
-    model = pickle.load(open(r'pkl files\ada.pkl', 'rb'))
+    model = pickle.load(open('pkl files/ada.pkl', 'rb'))
     int_features = [float(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
@@ -137,7 +137,7 @@ def adapredict():
 @app.route('/xgpredict',methods=['POST'])
 def xgpredict():
     
-    model = pickle.load(open(r'pkl files\xg.pkl', 'rb'))
+    model = pickle.load(open('pkl files/xg.pkl', 'rb'))
     int_features = [float(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
@@ -148,4 +148,4 @@ def xgpredict():
         return render_template('xg.html', prediction_text='You don\'t have diabetes')
 
 if __name__ == "__main__":
-    app.run(debug = False, host = '0.0.0.0')
+    app.run(debug = False, host = '0.0.0.0', port=3000)
